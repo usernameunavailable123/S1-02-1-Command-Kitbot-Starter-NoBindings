@@ -82,7 +82,7 @@ public class RobotContainer {
      * @return the command to run in autonomous
      */
     public Command getAutonomousCommand() {
-        return Autos.driveDistance(m_driveSubsystem);
+        return Autos.shootSequenceAuto(m_loader, m_flywheel);
     }
     
 }

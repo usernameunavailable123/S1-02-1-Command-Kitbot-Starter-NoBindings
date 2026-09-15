@@ -7,6 +7,8 @@ package frc.robot.commands;
 import frc.robot.Constants.AutoConstants;
 import frc.robot.subsystems.DriveSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.Flywheel;
+import frc.robot.subsystems.Loader;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.Commands;
 
@@ -15,6 +17,25 @@ public final class Autos {
     public static Command exampleAuto(ExampleSubsystem subsystem) {
         return Commands.sequence(subsystem.exampleMethodCommand(), new ExampleCommand(subsystem));
     }
+public static Command shootSequenceAuto(Loader loader, Flywheel flywheel) {
+
+    return Commands.deadline(
+
+        Commands.sequence(
+
+            Commands.waitSeconds(1.0),
+
+            loader.runToFlywheelCommand()
+
+                .withTimeout(2.0)
+
+        ),
+
+        flywheel.runShooterCommand()
+
+    );
+
+}
 
     /** Drive a fixed distance
      * 
@@ -32,3 +53,4 @@ public final class Autos {
         throw new UnsupportedOperationException("This is a utility class!");
     }
 }
+
