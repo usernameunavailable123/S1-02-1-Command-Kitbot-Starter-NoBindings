@@ -62,8 +62,13 @@ public class RobotContainer {
                 // m_driverController.y().onTrue(m_intake.stopIntakeCommand());
 
 
-                // m_driverController.a().toggleOnTrue(m_flywheel.runShooterCommand());
-                // m_driverController.b().toggleOnTrue(m_loader.runToFlywheelCommand());
+                // whileTrue starts the command when the button is held.
+                // When the button is released, whileTrue cancels the command.
+                // Cancelling the command causes finallyDo in the subsystem command to run,/
+                // and finallyDo stops the motor. Therefore, no separate stop binding is needed.
+
+                m_driverController.a().toggleOnTrue(m_flywheel.runShooterCommand());
+                m_driverController.b().whileTrue(m_loader.runToFlywheelCommand());
 
 
 
