@@ -56,6 +56,17 @@ public class RobotContainer {
         m_driveSubsystem.setDefaultCommand(
             m_driveSubsystem.arcadeDriveCommand(
                 () -> -m_driverController.getLeftY(), () -> -m_driverController.getRightX()));
+                m_driverController.a().onTrue(m_intake.runIntakeCommand());
+                m_driverController.b().whileTrue(m_intake.runIntakeCommand());
+                // m_driverController.x().toggleOnTrue(m_intake.runIntakeCommand());
+                m_driverController.y().onTrue(m_intake.stopIntakeCommand());
+
+
+                // m_driverController.a().toggleOnTrue(m_flywheel.runShooterCommand());
+                // m_driverController.b().toggleOnTrue(m_loader.runToFlywheelCommand());
+
+
+
 
         /* TO DO: Add bindings here */
     }
